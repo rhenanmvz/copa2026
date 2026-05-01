@@ -79,7 +79,7 @@ def render_sidebar() -> tuple[str, int, int | None, bytes | None]:
         "Quantas Copas sortear nesta execucao?",
         min_value=1,
         max_value=MAX_CUPS_PER_USER,
-        value=3,
+        value=1,
         step=1,
         help="Para apresentacao publica, limitar em 10 deixa o app rapido e evita sobrecarga.",
     )

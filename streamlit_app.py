@@ -234,7 +234,7 @@ def main() -> None:
     st.write(
 "🍀 **Traga sorte para a Seleção!** Aperte o botão e ajude a manifestar o Hexa no nosso servidor. "
     "Se o Brasil não sair campeão na sua simulação, não se desespere: **foi apenas um erro de arredondamento estatístico.** "
-    "Tente novamente até a realidade (ou o algoritmo) colaborar!"
+    "Tente novamente até a realidade (ou o algoritmo) colaborar! "
     "Simule agora e veja quem levanta a taça."
     )
 

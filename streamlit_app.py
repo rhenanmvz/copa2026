@@ -230,9 +230,12 @@ def main() -> None:
     mode, cups, random_seed, file_bytes = render_sidebar()
 
     st.markdown("---")
-    st.subheader("Como usar na apresentacao")
+    st.subheader("Interaja com o maior evento esportivo do planeta!")
     st.write(
-        "Publique este app no Streamlit Cloud, gere um QR code com a URL publica e deixe cada pessoa simular sua propria Copa escolhendo um dos tres modos."
+"🍀 **Traga sorte para a Seleção!** Aperte o botão e ajude a manifestar o Hexa no nosso servidor. "
+    "Se o Brasil não sair campeão na sua simulação, não se desespere: **foi apenas um erro de arredondamento estatístico.** "
+    "Tente novamente até a realidade (ou o algoritmo) colaborar!"
+    "Simule agora e veja quem levanta a taça."
     )
 
     if file_bytes is None:

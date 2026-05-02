@@ -1136,10 +1136,10 @@ def export_results(
     last_final_ranking_sheet: str,
     metadata_sheet: str,
 ) -> Path:
-    if output_path.resolve() != source_path.resolve():
-        copy2(source_path, output_path)
+    # if output_path.resolve() != source_path.resolve():
+    #     copy2(source_path, output_path)
 
-    with pd.ExcelWriter(output_path, engine="openpyxl", mode="a", if_sheet_exists="replace") as writer:
+    with pd.ExcelWriter(output_path, engine="openpyxl", mode="w", if_sheet_exists="replace") as writer:
         ranking_df.to_excel(writer, sheet_name=ranking_sheet, index=False)
         last_matches_df.to_excel(writer, sheet_name=last_matches_sheet, index=False)
         last_groups_df.to_excel(writer, sheet_name=last_groups_sheet, index=False)

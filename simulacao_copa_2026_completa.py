@@ -500,10 +500,10 @@ def simulate_match(
         "winner": winner,
         "loser": loser,
         "decision": decision,
-        "base_probability_a": base_probability,
-        "sampled_probability_a": sampled_probability,
-        "lambda_a": lambda_a,
-        "lambda_b": lambda_b,
+        # "base_probability_a": base_probability,
+        # "sampled_probability_a": sampled_probability,
+        # "lambda_a": lambda_a,
+        # "lambda_b": lambda_b,
     }
 
 

@@ -40,7 +40,7 @@ def set_page_config() -> None:
 def render_intro() -> None:
     st.title(APP_TITLE)
     st.caption(
-        "Escolha um modo, rode ate 10 Copas por vez e veja como o ranking oficial muda a cada execucao."
+        "Escolha um modo, rode ate 10 Copas por vez e veja como o ranking oficial muda a cada execução."
     )
 
     col1, col2, col3, col4 = st.columns(4)
@@ -79,9 +79,9 @@ def render_sidebar() -> tuple[str, int, int | None, bytes | None]:
         "Quantas Copas sortear nesta execucao?",
         min_value=1,
         max_value=MAX_CUPS_PER_USER,
-        value=3,
+        value=1,
         step=1,
-        help="Limitada em 10 deixa o app rapido e evita sobrecarga.",
+        help="Limitada em 10. ",
     )
 
     seed_text = st.sidebar.text_input(
@@ -240,7 +240,7 @@ def main() -> None:
     st.write(
         "🍀 **Traga sorte para a Seleção!** Aperte o botão e ajude a manifestar o Hexa no nosso servidor. "
     "Se o Brasil não sair campeão na sua simulação, não se desespere: **foi apenas um erro de arredondamento estatístico.** "
-    "Tente novamente até a realidade (ou o algoritmo) colaborar!"
+    "Tente novamente até a realidade (ou o algoritmo) colaborar! "
     "Simule agora e veja quem levanta a taça."
     )
 

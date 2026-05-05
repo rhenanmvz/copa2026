@@ -1135,16 +1135,33 @@ def export_results(
     last_groups_sheet: str,
     last_final_ranking_sheet: str,
     metadata_sheet: str,
+    include_source_sheets: bool = True,
 ) -> Path:
-    if output_path.resolve() != source_path.resolve():
-        copy2(source_path, output_path)
-
-    with pd.ExcelWriter(output_path, engine="openpyxl", mode="w", if_sheet_exists="replace") as writer:
-        ranking_df.to_excel(writer, sheet_name=ranking_sheet, index=False)
-        last_matches_df.to_excel(writer, sheet_name=last_matches_sheet, index=False)
-        last_groups_df.to_excel(writer, sheet_name=last_groups_sheet, index=False)
-        last_final_ranking_df.to_excel(writer, sheet_name=last_final_ranking_sheet, index=False)
-        metadata_df.to_excel(writer, sheet_name=metadata_sheet, index=False)
+    if include_source_sheets:
+        if output_path.resolve() != source_path.resolve():
+            copy2(source_path, output_path)
+        with pd.ExcelWriter(
+            output_path,
+            engine="openpyxl",
+            mode="a",
+            if_sheet_exists="replace",
+        ) as writer:
+            ranking_df.to_excel(writer, sheet_name=ranking_sheet, index=False)
+            last_matches_df.to_excel(writer, sheet_name=last_matches_sheet, index=False)
+            last_groups_df.to_excel(writer, sheet_name=last_groups_sheet, index=False)
+            last_final_ranking_df.to_excel(writer, sheet_name=last_final_ranking_sheet, index=False)
+            metadata_df.to_excel(writer, sheet_name=metadata_sheet, index=False)
+    else:
+        if output_path.resolve() == source_path.resolve():
+            raise ValueError(
+                "Para exportar apenas abas de resultado, output_path deve ser diferente do arquivo base."
+            )
+        with pd.ExcelWriter(output_path, engine="openpyxl", mode="w") as writer:
+            ranking_df.to_excel(writer, sheet_name=ranking_sheet, index=False)
+            last_matches_df.to_excel(writer, sheet_name=last_matches_sheet, index=False)
+            last_groups_df.to_excel(writer, sheet_name=last_groups_sheet, index=False)
+            last_final_ranking_df.to_excel(writer, sheet_name=last_final_ranking_sheet, index=False)
+            metadata_df.to_excel(writer, sheet_name=metadata_sheet, index=False)
     return output_path
 
 
@@ -1172,6 +1189,7 @@ def run_world_cup_simulation(
     min_goals_lambda: float | None = None,
     max_goals_lambda: float | None = None,
     name_aliases: dict[str, str] | None = None,
+    include_source_sheets: bool = True,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, Path]:
     excel_path = Path(excel_path)
     if not excel_path.exists():
@@ -1291,6 +1309,7 @@ def run_world_cup_simulation(
         last_groups_sheet=last_groups_sheet,
         last_final_ranking_sheet=last_final_ranking_sheet,
         metadata_sheet=metadata_sheet,
+        include_source_sheets=include_source_sheets,
     )
 
     return ranking_df, last_matches_df, last_groups_df, last_final_ranking_df, exported_path

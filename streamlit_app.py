@@ -136,12 +136,18 @@ def run_simulation_from_upload(
         random_seed=random_seed,
         preset_name=mode,
         export_to_source_workbook=False,
+        ranking_sheet="ranking_oficial",
+        last_matches_sheet="ultima_simulacao_jogos",
+        last_groups_sheet="ultima_simulacao_grupos",
+        last_final_ranking_sheet="ultima_simulacao_ranking",
+        metadata_sheet="metadados",
         probability_concentration=params["probability_concentration"],
         probability_tilt=params["probability_tilt"],
         attack_weight=params["attack_weight"],
         defense_weight=params["defense_weight"],
         min_goals_lambda=params["min_goals_lambda"],
         max_goals_lambda=params["max_goals_lambda"],
+        include_source_sheets=False,
     )
 
     return {

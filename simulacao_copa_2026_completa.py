@@ -22,7 +22,7 @@ DEFAULT_OUTPUT_PATH = DEFAULT_EXCEL_PATH.with_name(
     f"{DEFAULT_EXCEL_PATH.stem}_simulado.xlsx"
 )
 
-DEFAULT_SIMULATION_PRESET = "caotico"
+DEFAULT_SIMULATION_PRESET = "equilibrado"
 
 SIMULATION_PRESETS = {
     "conservador": {
@@ -361,10 +361,10 @@ def build_team_data(selections_df: pd.DataFrame, saldo_df: pd.DataFrame) -> pd.D
         raise ValueError(f"Faltam dados numericos para: {missing}")
 
     weights = {
-        "media_jogadores": 0.30,
-        "comissao_tecnica": 0.20,
-        "fs_norm": 0.25,
-        "er_norm": 0.25,
+        "media_jogadores": 0.35,
+        "comissao_tecnica": 0.15,
+        "fs_norm": 0.15,
+        "er_norm": 0.35,
     }
 
     power = np.zeros(len(merged), dtype=float)
@@ -1139,7 +1139,7 @@ def export_results(
     if output_path.resolve() != source_path.resolve():
         copy2(source_path, output_path)
 
-    with pd.ExcelWriter(output_path, engine="openpyxl", mode="a", if_sheet_exists="replace") as writer:
+    with pd.ExcelWriter(output_path, engine="openpyxl", mode="w", if_sheet_exists="replace") as writer:
         ranking_df.to_excel(writer, sheet_name=ranking_sheet, index=False)
         last_matches_df.to_excel(writer, sheet_name=last_matches_sheet, index=False)
         last_groups_df.to_excel(writer, sheet_name=last_groups_sheet, index=False)

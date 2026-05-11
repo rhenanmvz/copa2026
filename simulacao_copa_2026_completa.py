@@ -22,7 +22,7 @@ DEFAULT_OUTPUT_PATH = DEFAULT_EXCEL_PATH.with_name(
     f"{DEFAULT_EXCEL_PATH.stem}_simulado.xlsx"
 )
 
-DEFAULT_SIMULATION_PRESET = "caotico"
+DEFAULT_SIMULATION_PRESET = "equilibrado"
 
 SIMULATION_PRESETS = {
     "conservador": {
